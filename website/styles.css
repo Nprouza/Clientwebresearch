@@ -1,0 +1,86 @@
+{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+}
+
+body {
+background-color: #f4f4f4;
+color: #333;
+}
+
+/* Sticky Header */
+header {
+position: sticky;
+top: 0;
+background-color: #111;
+color: #fff;
+padding: 1rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+font-size: 1.5rem;
+}
+
+nav a {
+color: #fff;
+text-decoration: none;
+margin-left: 1.5rem;
+font-weight: bold;
+}
+
+nav a:hover {
+color: #00bcd4;
+}
+
+/* Main Container & CSS Grid Layout */
+.container {
+max-width: 1200px;
+margin: 2rem auto;
+padding: 0 1rem;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.5rem;
+}
+
+/* Service Cards */
+.card {
+background-color: #fff;
+border-radius: 8px;
+padding: 1.5rem;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.card h2 {
+font-size: 1.25rem;
+margin-bottom: 0.5rem;
+color: #222;
+}
+
+.card .description {
+font-size: 0.95rem;
+color: #666;
+margin-bottom: 1.5rem;
+line-height: 1.4;
+}
+
+.card .price {
+font-size: 1.5rem;
+font-weight: bold;
+color: #008cba;
+}
+
+/* Additional Services Section Grid Span */
+.full-width {
+grid-column: 1 / -1;
+background-color: #e9ecef;
+}
