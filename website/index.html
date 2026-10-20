@@ -13,17 +13,29 @@
   <header class="sticky-header">
     <a href="#" class="logo">
       <span class="highlight">C&R</span>
-      <span>AUTOMOTIVE</span>
+      <span>AUTOMOTIVE DETAILING</span>
     </a>
     <nav class="nav-links">
       <a href="#description">Description</a>
       <a href="#pictures">Pictures</a>
       <a href="#pricing">Pricing</a>
+      <a href="#booking" class="nav-cta">Book Now</a>
     </nav>
   </header>
 
   <!-- Main Grid Layout -->
   <main class="grid-container">
+
+    <!-- Hero Container -->
+    <section class="hero-container">
+      <p class="eyebrow">Luxury finish. Precision care.</p>
+      <h1>Automotive Detailing</h1>
+      <p class="tagline">C&R Precision Auto Care & Paint Correction</p>
+      <div class="hero-actions">
+        <a href="#booking" class="cta-button primary">Book an Appointment</a>
+        <a href="#pricing" class="cta-button secondary">View Packages</a>
+      </div>
+    </section>
 
     <!-- Interactive Top Carousel -->
     <section class="carousel-section" id="carousel">
@@ -79,16 +91,32 @@
       <div class="carousel-dots" id="carouselDots"></div>
     </section>
 
-    <!-- Hero Container -->
-    <section class="hero-container">
-      <h1>Automotive Detailing</h1>
-      <p class="tagline">C&R Precision Auto Care & Paint Correction</p>
-    </section>
-
     <!-- Description Container -->
     <section id="description" class="description-container">
       <h2 class="section-heading">Description</h2>
       <p>At C&R Automotive Detailing, we specialize in high-end exterior restoration and full-service auto care. From daily drivers to exotic paint corrections, our team uses top-grade equipment and advanced techniques to bring out a flawless, mirror-like gloss on every vehicle.</p>
+    </section>
+
+    <section class="feature-strip">
+      <h2 class="section-heading">Why Drivers Choose Us</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-number">400+</div>
+          <div class="feature-label">Vehicles Detailed</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">9+</div>
+          <div class="feature-label">Years of Craft</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">5★</div>
+          <div class="feature-label">Client Experience</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-number">100%</div>
+          <div class="feature-label">Finish Focused</div>
+        </div>
+      </div>
     </section>
 
     <!-- Pictures / Gallery Container -->
@@ -148,6 +176,67 @@
       </div>
     </section>
 
+    <section id="booking" class="booking-container">
+      <h2 class="section-heading">Book an Appointment</h2>
+
+      <div class="booking-grid">
+        <div class="booking-info">
+          <p>Reserve your preferred service time and our team will confirm your appointment as soon as possible.</p>
+          <ul>
+            <li>Paint correction</li>
+            <li>Interior detailing</li>
+            <li>Exterior wash & seal</li>
+            <li>Commercial fleet care</li>
+          </ul>
+        </div>
+
+        <form class="booking-form">
+          <div class="booking-form-row">
+            <label>
+              Full Name
+              <input type="text" name="name" placeholder="Your name" required>
+            </label>
+          </div>
+
+          <div class="booking-form-row two-col">
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" placeholder="(555) 123-4567" required>
+            </label>
+          </div>
+
+          <div class="booking-form-row two-col">
+            <label>
+              Service
+              <select name="service" required>
+                <option value="">Choose a service</option>
+                <option>Full Detail</option>
+                <option>Outside Detail / Commercial</option>
+                <option>Paint Correction</option>
+              </select>
+            </label>
+            <label>
+              Preferred Date
+              <input type="date" name="date" required>
+            </label>
+          </div>
+
+          <div class="booking-form-row">
+            <label>
+              Additional Notes
+              <textarea name="notes" rows="4" placeholder="Tell us about your vehicle or any special requests"></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-select booking-btn">Request Appointment</button>
+        </form>
+      </div>
+    </section>
+
   </main>
 
   <div class="top-contact-bar">
@@ -176,6 +265,17 @@
 
       <div class="contact-badge">
         Mon - Sat: 8:00 AM - 6:00 PM
+      </div>
+    </div>
+  </div>
+
+  <div id="galleryModal" class="gallery-modal" aria-hidden="true">
+    <div class="gallery-modal-backdrop" data-close="true"></div>
+    <div class="gallery-modal-content" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
+      <button class="gallery-modal-close" type="button" aria-label="Close image">×</button>
+      <img id="galleryModalImage" src="" alt="Expanded gallery image">
+      <div class="gallery-modal-caption">
+        <h3 id="galleryModalTitle">Detailing Work</h3>
       </div>
     </div>
   </div>
