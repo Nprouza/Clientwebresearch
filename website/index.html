@@ -3,49 +3,789 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automotive Detailing Services</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>C&R Automotive Detailing | Professional Car Care</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-main: #0a0a0c;
+      --bg-card: #141418;
+      --bg-card-hover: #1c1c22;
+      --accent-red: #e50914;
+      --accent-red-bright: #ff1e27;
+      --accent-red-glow: rgba(229, 9, 20, 0.4);
+      --text-light: #ffffff;
+      --text-muted: #aaaaaa;
+      --border-dark: #26262e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-main);
+      color: var(--text-light);
+    }
+
+    /* Top Contact Bar */
+    .top-contact-bar {
+      background-color: #060608;
+      border-bottom: 1px solid var(--border-dark);
+      padding: 0.5rem 2rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .top-contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .contact-info-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .contact-item:hover {
+      color: var(--accent-red-bright);
+    }
+
+    .contact-icon {
+      width: 14px;
+      height: 14px;
+      fill: var(--accent-red);
+      flex-shrink: 0;
+    }
+
+    .contact-badge {
+      background: rgba(229, 9, 20, 0.15);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red-bright);
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Sticky Header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(13, 13, 17, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--accent-red);
+      box-shadow: 0 4px 20px rgba(229, 9, 20, 0.25);
+    }
+
+    .sticky-header .logo {
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+    }
+
+    .sticky-header .logo span.highlight {
+      color: var(--accent-red);
+      text-shadow: 0 0 10px var(--accent-red-glow);
+    }
+
+    .sticky-header .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .sticky-header .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .sticky-header .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--accent-red);
+      transition: width 0.3s ease;
+    }
+
+    .sticky-header .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .sticky-header .nav-links a:hover {
+      color: var(--accent-red-bright);
+    }
+
+    /* Main Container Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Image Carousel Section */
+    .carousel-section {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--accent-red);
+      box-shadow: 0 10px 35px rgba(229, 9, 20, 0.3);
+      background-color: #000;
+      user-select: none;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) contrast(1.1);
+    }
+
+    /* Slide Overlay Content */
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem 2rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 12, 0.95) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+
+    .slide-caption h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .slide-caption p {
+      color: var(--accent-red-bright);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Navigation Arrows */
+    .carousel-btn {
+      border: 1px solid var(--border-dark);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background: var(--accent-red);
+      border-color: var(--accent-red-bright);
+      box-shadow: 0 0 15px var(--accent-red-glow);
+    }
+
+    .carousel-btn.prev { left: 1rem; }
+    .carousel-btn.next { right: 1rem; }
+
+    /* Carousel Indicators / Dots */
+    .carousel-dots {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.6rem;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--accent-red-bright);
+      width: 28px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px var(--accent-red);
+    }
+
+    /* Common Card / Section Styling */
+    .hero-container,
+    .description-container,
+    .pictures-container,
+    .pricing-container {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .hero-container:hover,
+    .description-container:hover,
+    .pictures-container:hover,
+    .pricing-container:hover {
+      border-color: rgba(229, 9, 20, 0.5);
+    }
+
+    /* Hero Banner */
+    .hero-container {
+      text-align: center;
+      background: linear-gradient(135deg, #180507 0%, #0d0d11 100%);
+      border: 2px solid var(--accent-red);
+      padding: 3rem 2rem;
+    }
+
+    .hero-container h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      text-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-container p.tagline {
+      color: var(--accent-red-bright);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 1rem;
+    }
+
+    /* Section Headings */
+    h2.section-heading {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-light);
+      border-bottom: 3px solid var(--accent-red);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Description Content */
+    .description-container p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .gallery-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-dark);
+      background: var(--bg-card);
+      transition: all 0.3s ease;
+      position: relative;
+      height: 190px;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-card:hover {
+      border-color: var(--accent-red);
+      box-shadow: 0 6px 20px var(--accent-red-glow);
+    }
+
+    .gallery-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 12, 0.85);
+      color: var(--text-light);
+      padding: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* Pricing Grid */
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .price-card {
+      border: 1px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 1.8rem 1.2rem;
+      background: linear-gradient(180deg, #181820 0%, #101015 100%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .price-card:hover {
+      border-color: var(--accent-red);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(229, 9, 20, 0.3);
+    }
+
+    .price-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .price-card .price {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--accent-red-bright);
+      margin: 0.8rem 0;
+      text-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+    }
+
+    .price-card .description {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .btn-select {
+      background-color: var(--accent-red);
+      color: var(--text-light);
+      border: none;
+      padding: 0.75rem 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-select:hover {
+      background-color: var(--accent-red-bright);
+      box-shadow: 0 0 15px var(--accent-red-glow);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-dark);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .top-contact-container {
+        justify-content: center;
+      }
+      .contact-info-group {
+        justify-content: center;
+      }
+      .carousel-section {
+        height: 320px;
+      }
+      .slide-caption h2 {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sticky-header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem;
+      }
+      .hero-container h1 {
+        font-size: 2rem;
+      }
+      .carousel-btn {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  </style>  
+    
 </head>
 <body>
 
+  <!-- Top Contact Bar -->
+  <div class="top-contact-bar">
+    <div class="top-contact-container">
+      <div class="contact-info-group">
+        <!-- Phone Number -->
+        <a href="tel:5558392019" class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>(555) 839-2019</span>
+        </a>
+
+        <!-- Alternate Phone / Text -->
+        <a href="tel:5554928104" class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+          <span>Text: (555) 492-8104</span>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:info@crdetailing.com" class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span>contact@crdetailing.com</span>
+        </a>
+
+        <!-- Location -->
+        <div class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>7421 Apex Drive, Suite 104</span>
+        </div>
+      </div>
+
+      <!-- Hours -->
+      <div class="contact-badge">
+        Mon - Sat: 8:00 AM - 6:00 PM
+      </div>
+    </div>
+  </div>
+
   <!-- Sticky Header -->
-  <header>
-    <h1>Automotive Detailing</h1>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#gallery">Pictures</a>
+  <header class="sticky-header">
+    <a href="#" class="logo">
+      <span class="highlight">C&R</span>
+      <span>AUTOMOTIVE</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#description">Description</a>
+      <a href="#pictures">Pictures</a>
       <a href="#pricing">Pricing</a>
     </nav>
   </header>
 
-  <!-- Main Content Grid -->
-  <main class="container">
+  <!-- Main Grid Layout -->
+  <main class="grid-container">
 
-    <article class="card">
-      <div>
-        <h2>Full Detail</h2>
-        <p class="description">Complete interior and exterior detailing service.</p>
-      </div>
-      <div class="price">$165</div>
-    </article>
+    <!-- Interactive Top Carousel -->
+    <section class="carousel-section" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        
+        <!-- Slide 1 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=1200&q=80" alt="Paint Correction Precision">
+          <div class="slide-caption">
+            <h2>Multi-Stage Paint Correction</h2>
+            <p>Mirror Finish & Swirl Removal</p>
+          </div>
+        </div>
 
-    <article class="card">
-      <div>
-        <h2>Paint Correction</h2>
-        <p class="description">3-step outside detail, commercially restoring exterior shine and clarity.</p>
-      </div>
-      <div class="price">$1,500</div>
-    </article>
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1520050206274-a1ae44613e6d?auto=format&fit=crop&w=1200&q=80" alt="Exotic Hand Wash">
+          <div class="slide-caption">
+            <h2>Premium Hand Wash & Foam Bath</h2>
+            <p>Gentle, Scratch-Free Decontamination</p>
+          </div>
+        </div>
 
-    <article class="card">
-      <div>
-        <h2>Ceramic Coating</h2>
-        <p class="description">Long-lasting paint protection and high-gloss finish.</p>
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80" alt="Interior Deep Clean">
+          <div class="slide-caption">
+            <h2>Luxury Interior Detailing</h2>
+            <p>Leather Conditioning & Steam Cleansing</p>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80" alt="Ceramic Coating Protection">
+          <div class="slide-caption">
+            <h2>Ceramic Coating Protection</h2>
+            <p>Hydrophobic Gloss Shield</p>
+          </div>
+        </div>
+
       </div>
-      <div class="price">$2,000</div>
-    </article>
+
+      <!-- Controls -->
+      <button class="carousel-btn prev" id="prevBtn" aria-label="Previous Slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="carousel-btn next" id="nextBtn" aria-label="Next Slide">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+
+      <!-- Navigation Dots -->
+      <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- Hero Container -->
+    <section class="hero-container">
+      <h1>Automotive Detailing</h1>
+      <p class="tagline">C&R Precision Auto Care & Paint Correction</p>
+    </section>
+
+    <!-- Description Container -->
+    <section id="description" class="description-container">
+      <h2 class="section-heading">Description</h2>
+      <p>At C&R Automotive Detailing, we specialize in high-end exterior restoration and full-service auto care. From daily drivers to exotic paint corrections, our team uses top-grade equipment and advanced techniques to bring out a flawless, mirror-like gloss on every vehicle.</p>
+    </section>
+
+    <!-- Pictures / Gallery Container -->
+    <section id="pictures" class="pictures-container">
+      <h2 class="section-heading">Pictures</h2>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Exotic Sports Car Finish">
+          <div class="gallery-badge">Clean Cars</div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Porsche Paint Polish">
+          <div class="gallery-badge">Clean Cars</div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80" alt="Hydrophobic Ceramic Coating">
+          <div class="gallery-badge">Clean Cars</div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80" alt="Detailing Polishing Wheel">
+          <div class="gallery-badge">Clean Cars</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Container -->
+    <section id="pricing" class="pricing-container">
+      <h2 class="section-heading">Paint Correction Pricing</h2>
+
+      <div class="pricing-cards">
+        <div class="price-card">
+          <div>
+            <h3>Full Detail</h3>
+            <div class="price">$165</div>
+            <p class="description">Includes full interior deep clean, exterior hand wash, wheel de-con, and protective spray sealant finish.</p>
+          </div>
+          <button class="btn-select">Book Service</button>
+        </div>
+
+        <div class="price-card">
+          <div>
+            <h3>Outside Detail / Commercial</h3>
+            <div class="price">$1,500</div>
+            <p class="description">Comprehensive commercial fleet treatment, deep glass polishing, heavy fallout removal, and ceramic topcoat.</p>
+          </div>
+          <button class="btn-select">Book Service</button>
+        </div>
+
+        <div class="price-card">
+          <div>
+            <h3>Paint Correction</h3>
+            <div class="price">$2,000</div>
+            <p class="description">Multi-stage machine paint correction, swirl & scratch removal, clear coat leveling, and premium ceramic coating.</p>
+          </div>
+          <button class="btn-select">Book Service</button>
+        </div>
+      </div>
+    </section>
 
   </main>
 
+  <footer>
+    <p>&copy; 2026 C&R Automotive Detailing. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Carousel Functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.getElementById('carouselTrack');
+      const slides = Array.from(track.children);
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const dotsNav = document.getElementById('carouselDots');
+
+      let currentIndex = 0;
+      let autoPlayTimer = null;
+
+      // Create Navigation Dots dynamically
+      slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          goToSlide(index);
+          resetAutoPlay();
+        });
+        dotsNav.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsNav.children);
+
+      // Move track to slide index
+      function goToSlide(index) {
+        if (index < 0) {
+          currentIndex = slides.length - 1;
+        } else if (index >= slides.length) {
+          currentIndex = 0;
+        } else {
+          currentIndex = index;
+        }
+
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        // Update active dot
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      // Next / Previous Click Handlers
+      nextBtn.addEventListener('click', () => {
+        goToSlide(currentIndex + 1);
+        resetAutoPlay();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        goToSlide(currentIndex - 1);
+        resetAutoPlay();
+      });
+
+      // Auto-Play Timer (Advances every 4.5 seconds)
+      function startAutoPlay() {
+        autoPlayTimer = setInterval(() => {
+          goToSlide(currentIndex + 1);
+        }, 4500);
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayTimer);
+        startAutoPlay();
+      }
+
+      // Touch / Swipe Support for Mobile Devices
+      let startX = 0;
+      let isDragging = false;
+
+      const carousel = document.getElementById('carousel');
+
+      carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+
+        if (diffX > 50) {
+          goToSlide(currentIndex + 1); // Swipe left -> next
+          resetAutoPlay();
+        } else if (diffX < -50) {
+          goToSlide(currentIndex - 1); // Swipe right -> prev
+          resetAutoPlay();
+        }
+        isDragging = false;
+      }, { passive: true });
+
+      // Start auto rotation on load
+      startAutoPlay();
+    });
+  </script>
 </body>
 </html>
