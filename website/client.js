@@ -87,46 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
   }
 
-  const galleryModal = document.getElementById('galleryModal');
-  const modalImage = document.getElementById('galleryModalImage');
-  const modalTitle = document.getElementById('galleryModalTitle');
-  const closeModalButton = document.querySelector('.gallery-modal-close');
-
-  if (galleryModal && modalImage && modalTitle) {
-    const openModal = (imageSrc, title) => {
-      modalImage.src = imageSrc;
-      modalImage.alt = title;
-      modalTitle.textContent = title;
-      galleryModal.classList.add('is-open');
-      galleryModal.setAttribute('aria-hidden', 'false');
-    };
-
-    const closeModal = () => {
-      galleryModal.classList.remove('is-open');
-      galleryModal.setAttribute('aria-hidden', 'true');
-    };
-
-    document.querySelectorAll('.gallery-item').forEach((item) => {
-      item.addEventListener('click', () => {
-        const fullImage = item.dataset.full;
-        const title = item.dataset.title;
-        if (fullImage && title) {
-          openModal(fullImage, title);
-        }
-      });
-    });
-
-    closeModalButton.addEventListener('click', closeModal);
-    galleryModal.addEventListener('click', (event) => {
-      if (event.target.dataset.close === 'true' || event.target === galleryModal) {
-        closeModal();
-      }
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && galleryModal.classList.contains('is-open')) {
-        closeModal();
-      }
-    });
-  }
 });
