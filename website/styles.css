@@ -717,39 +717,146 @@ footer {
 }
 
 /* Responsive Adjustments */
+@media (max-width: 900px) {
+  .sticky-header {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .sticky-header .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sticky-header .logo {
+    font-size: 1.1rem;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .top-contact-container {
     justify-content: center;
   }
+
   .contact-info-group {
     justify-content: center;
   }
+
   .carousel-section {
     height: 320px;
   }
+
   .slide-caption h2 {
     font-size: 1.4rem;
   }
 }
 
 @media (max-width: 600px) {
-  .sticky-header {
-    flex-direction: column;
-    gap: 0.8rem;
-    padding: 1rem;
+  .grid-container {
+    padding: 0 0.9rem;
+    gap: 1.25rem;
   }
+
+  .top-contact-bar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .top-contact-container {
+    gap: 0.5rem;
+  }
+
+  .contact-item {
+    font-size: 0.72rem;
+  }
+
+  .sticky-header {
+    padding: 0.85rem 0.75rem;
+  }
+
+  .sticky-header .nav-links {
+    width: 100%;
+    gap: 0.5rem 0.75rem;
+  }
+
+  .sticky-header .nav-links a {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .hero-container,
+  .description-container,
+  .feature-strip,
+  .pictures-container,
+  .pricing-container,
+  .booking-container {
+    padding: 1.25rem 1rem;
+  }
+
   .hero-container h1 {
     font-size: 2rem;
   }
+
+  .eyebrow {
+    letter-spacing: 0.12rem;
+    font-size: 0.62rem;
+  }
+
+  .hero-container p.tagline {
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+  }
+
   .hero-actions {
     flex-direction: column;
   }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .carousel-section {
+    height: 260px;
+  }
+
+  .slide-caption {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .slide-caption h2 {
+    font-size: 1.15rem;
+  }
+
+  .slide-caption p {
+    font-size: 0.68rem;
+    letter-spacing: 0.08rem;
+  }
+
   .carousel-btn {
     width: 38px;
     height: 38px;
   }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid,
+  .pricing-cards,
   .booking-grid,
   .booking-form-row.two-col {
     grid-template-columns: 1fr;
+  }
+
+  .booking-info {
+    padding: 1rem;
+  }
+
+  footer {
+    padding: 1.5rem 1rem;
   }
 }
