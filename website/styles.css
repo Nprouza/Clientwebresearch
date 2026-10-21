@@ -354,7 +354,7 @@ body::after {
 /* Hero Banner */
 .hero-container {
   text-align: center;
-  background: linear-gradient(135deg, rgba(229, 9, 20, 0.18), rgba(17, 17, 20, 0.95) 45%, rgba(10, 10, 12, 1));
+  background : url(images/new\ background.webp) center/cover no-repeat;
   border: 2px solid rgba(229, 9, 20, 0.9);
   padding: 3.5rem 2rem 3rem;
   position: relative;
@@ -551,6 +551,109 @@ h2.section-heading {
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.5px;
+}
+
+.before-after-container {
+  background: linear-gradient(180deg, rgba(35, 16, 18, 0.96), rgba(11, 11, 14, 0.96));
+  border: 2px solid rgba(229, 9, 20, 0.9);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 0 1px rgba(229, 9, 20, 0.2), 0 16px 35px rgba(229, 9, 20, 0.18);
+  position: relative;
+}
+
+.before-after-container::before {
+  content: 'Featured transformation';
+  position: absolute;
+  top: 0.9rem;
+  right: 1.2rem;
+  background: rgba(229, 9, 20, 0.12);
+  color: var(--accent-red-bright);
+  border: 1px solid rgba(229, 9, 20, 0.8);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.before-after-container .section-heading {
+  background: rgba(229, 9, 20, 0.08);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(229, 9, 20, 0.4);
+}
+
+.before-after-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.comparison-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-dark);
+  background: #0b0b0f;
+  min-height: 290px;
+}
+
+.blank-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 80%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.comparison-card img {
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+}
+
+.comparison-label {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 2;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.comparison-label.before {
+  background: rgba(255, 255, 255, 0.85);
+  color: #111827;
+}
+
+.comparison-label.after {
+  background: rgba(229, 9, 20, 0.9);
+  color: var(--text-light);
 }
 
 /* Pricing Grid */
@@ -845,11 +948,16 @@ footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .before-after-grid,
   .gallery-grid,
   .pricing-cards,
   .booking-grid,
   .booking-form-row.two-col {
     grid-template-columns: 1fr;
+  }
+
+  .comparison-card img {
+    height: 220px;
   }
 
   .booking-info {
