@@ -664,6 +664,119 @@ h2.section-heading {
   color: var(--text-light);
 }
 
+.before-after-grid {
+  display: grid;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.compact-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.comparison-card.compact-comparison {
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.comparison-slider {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0b0b0f;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.comparison-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.placeholder-slider .before-layer,
+.placeholder-slider .after-layer {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px dashed rgba(255,255,255,0.18);
+}
+
+.placeholder-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 1rem;
+}
+
+.before-layer {
+  z-index: 1;
+  clip-path: inset(0 50% 0 0);
+}
+
+.after-layer {
+  z-index: 2;
+  clip-path: inset(0 0 0 50%);
+}
+
+.comparison-slider .comparison-label {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 4;
+}
+
+.comparison-slider .comparison-label.after {
+  left: auto;
+  right: 0.9rem;
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(-50%);
+  z-index: 5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.comparison-handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(229, 9, 20, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 900;
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.45);
+}
+
 /* Pricing Grid */
 .pricing-cards {
   display: grid;

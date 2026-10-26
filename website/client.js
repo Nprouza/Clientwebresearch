@@ -87,4 +87,51 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
   }
 
+  const comparisonSliders = document.querySelectorAll('.comparison-slider');
+
+  comparisonSliders.forEach((slider) => {
+    const beforeLayer = slider.querySelector('.before-layer');
+    const afterLayer = slider.querySelector('.after-layer');
+    const handle = slider.querySelector('.comparison-handle');
+
+    if (!beforeLayer || !afterLayer || !handle) return;
+
+    let isDragging = false;
+
+    function updateSlider(clientX) {
+      const rect = slider.getBoundingClientRect();
+      const clampedX = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+      const percentage = (clampedX / rect.width) * 100;
+
+      beforeLayer.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+      afterLayer.style.clipPath = `inset(0 0 0 ${percentage}%)`;
+      handle.style.left = `${percentage}%`;
+    }
+
+    slider.addEventListener('pointerdown', (event) => {
+      isDragging = true;
+      slider.setPointerCapture?.(event.pointerId);
+      updateSlider(event.clientX);
+    });
+
+    slider.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+      updateSlider(event.clientX);
+    });
+
+    slider.addEventListener('pointerup', () => {
+      isDragging = false;
+    });
+
+    slider.addEventListener('pointerleave', () => {
+      isDragging = false;
+    });
+
+    slider.addEventListener('pointercancel', () => {
+      isDragging = false;
+    });
+
+    const rect = slider.getBoundingClientRect();
+    updateSlider(rect.left + rect.width * 0.5);
+  });
 });
