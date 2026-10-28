@@ -238,9 +238,7 @@ button, input, select, textarea {
   min-height: 520px;
   padding: 2.5rem 2rem;
   border: 1px solid rgba(255,255,255,0.08);
-  background:
-    linear-gradient(135deg, rgba(217, 16, 30, 0.18), rgba(10,10,12,0.86) 68%),
-    url('images/new background.webp') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(217, 16, 30, 0.18), rgba(10,10,12,0.86) 68%);
 }
 
 .hero-container::before {
