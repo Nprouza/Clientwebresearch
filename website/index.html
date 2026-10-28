@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>C&R Automotive Detailing | Professional Car Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -29,67 +32,61 @@
 
     <!-- Hero Container -->
     <section class="hero-container">
-      <p class="eyebrow">Luxury finish. Precision care.</p>
-      <h1>Automotive Detailing</h1>
-      <p class="tagline">C&R Precision Auto Care & Paint Correction</p>
-      <div class="hero-actions">
-        <a href="#booking" class="cta-button primary">Book an Appointment</a>
-        <a href="#pricing" class="cta-button secondary">View Packages</a>
-      </div>
-    </section>
-
-    <!-- Interactive Top Carousel -->
-    <section class="carousel-section" id="carousel">
-      <div class="carousel-track" id="carouselTrack">
-        
-        <!-- Slide 1 -->
-        <div class="carousel-slide">
-          <img src="images/paint-correction.svg" alt="Paint Correction Precision">
-          <div class="slide-caption">
-            <h2>Multi-Stage Paint Correction</h2>
-            <p>Mirror Finish & Swirl Removal</p>
-          </div>
+      <div class="hero-copy">
+        <p class="eyebrow">Luxury finish. Precision care.</p>
+        <h1>Automotive Detailing</h1>
+        <p class="student-owned">Student Owned <span aria-hidden="true">✦</span></p>
+        <p class="tagline">C&R Precision Auto Care & Paint Correction</p>
+        <div class="hero-actions">
+          <a href="#booking" class="cta-button primary">Book an Appointment</a>
+          <a href="#pricing" class="cta-button secondary">View Packages</a>
         </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-slide">
-          <img src="images/hand-wash.svg" alt="Exotic Hand Wash">
-          <div class="slide-caption">
-            <h2>Premium Hand Wash & Foam Bath</h2>
-            <p>Gentle, Scratch-Free Decontamination</p>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-slide">
-          <img src="images/interior-detail.svg" alt="Interior Deep Clean">
-          <div class="slide-caption">
-            <h2>Luxury Interior Detailing</h2>
-            <p>Leather Conditioning & Steam Cleansing</p>
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="carousel-slide">
-          <img src="images/ceramic-coating.svg" alt="Ceramic Coating Protection">
-          <div class="slide-caption">
-            <h2>Ceramic Coating Protection</h2>
-            <p>Hydrophobic Gloss Shield</p>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Controls -->
-      <button class="carousel-btn prev" id="prevBtn" aria-label="Previous Slide">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <button class="carousel-btn next" id="nextBtn" aria-label="Next Slide">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
+      <div class="hero-visual" id="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="images/paint-correction.svg" alt="Paint Correction Precision">
+            <div class="slide-caption">
+              <h2>Multi-Stage Paint Correction</h2>
+              <p>Mirror Finish & Swirl Removal</p>
+            </div>
+          </div>
 
-      <!-- Navigation Dots -->
-      <div class="carousel-dots" id="carouselDots"></div>
+          <div class="carousel-slide">
+            <img src="images/hand-wash.svg" alt="Exotic Hand Wash">
+            <div class="slide-caption">
+              <h2>Premium Hand Wash & Foam Bath</h2>
+              <p>Gentle, Scratch-Free Decontamination</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="images/interior-detail.svg" alt="Interior Deep Clean">
+            <div class="slide-caption">
+              <h2>Luxury Interior Detailing</h2>
+              <p>Leather Conditioning & Steam Cleansing</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="images/ceramic-coating.svg" alt="Ceramic Coating Protection">
+            <div class="slide-caption">
+              <h2>Ceramic Coating Protection</h2>
+              <p>Hydrophobic Gloss Shield</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" id="prevBtn" aria-label="Previous Slide">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="carousel-btn next" id="nextBtn" aria-label="Next Slide">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
     </section>
 
     <!-- Description Container -->
@@ -195,6 +192,7 @@
     <section id="pricing" class="pricing-container">
       <h2 class="section-heading">Our packages</h2>
       <p class="pricing-note">Pricing varies based on the vehicle’s condition, size, and the level of detailing required.</p>
+      <a href="#contact" class="pricing-question">Contact for any questions</a>
 
       <div class="pricing-cards">
         <div class="price-card">
@@ -231,16 +229,17 @@
 
       <div class="booking-grid">
         <div class="booking-info">
-          <p>Reserve your preferred service time and our team will confirm your appointment as soon as possible.</p>
+          <p>Share your preferred service and timeline, and our team will reach out with available appointment options.</p>
           <ul>
             <li>Paint correction</li>
             <li>Interior detailing</li>
             <li>Exterior wash & seal</li>
             <li>Commercial fleet care</li>
           </ul>
+          <a href="mailto:contact@crdetailing.com" class="booking-cta">Email the shop</a>
         </div>
 
-        <form class="booking-form">
+        <form id="bookingForm" class="booking-form">
           <div class="booking-form-row">
             <label>
               Full Name
@@ -292,25 +291,15 @@
   <div class="top-contact-bar">
     <div class="top-contact-container">
       <div class="contact-info-group">
-        <a href="tel:5558392019" class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          <span>(555) 839-2019</span>
+        <a href="#booking" class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Book your detail</span>
         </a>
 
-        <a href="tel:5554928104" class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
-          <span>Text: (555) 492-8104</span>
+        <a href="#contact" class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Questions?</span>
         </a>
-
-        <a href="mailto:info@crdetailing.com" class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          <span>contact@crdetailing.com</span>
-        </a>
-
-        <div class="contact-item">
-          <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          <span>7421 Apex Drive, Suite 104</span>
-        </div>
       </div>
 
       <div class="contact-badge">
@@ -318,6 +307,17 @@
       </div>
     </div>
   </div>
+
+  <section id="contact" class="contact-cta-section">
+    <div class="contact-cta-inner">
+      <p class="eyebrow eyebrow-compact">Need help deciding?</p>
+      <h3>Talk to our team</h3>
+      <div class="contact-actions">
+        <a class="contact-action-btn" href="tel:+13308129413">Call now</a>
+        <a class="contact-action-btn" href="sms:+13308129413">Text now</a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>&copy; 2026 C&R Automotive Detailing. All Rights Reserved.</p>

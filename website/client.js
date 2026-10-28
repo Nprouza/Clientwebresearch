@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const bookingForm = document.getElementById('bookingForm');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(bookingForm);
+      const name = formData.get('name')?.toString().trim() || 'Not provided';
+      const email = formData.get('email')?.toString().trim() || 'Not provided';
+      const phone = formData.get('phone')?.toString().trim() || 'Not provided';
+      const service = formData.get('service')?.toString().trim() || 'Not provided';
+      const date = formData.get('date')?.toString().trim() || 'Not provided';
+      const notes = formData.get('notes')?.toString().trim() || 'No additional notes';
+
+      const message = [
+        'Booking request',
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Service: ${service}`,
+        `Preferred date: ${date}`,
+        `Notes: ${notes}`
+      ].join('\n');
+
+      const smsLink = `sms:+13308129413?body=${encodeURIComponent(message)}`;
+      window.location.href = smsLink;
+    });
+  }
+
   const carouselTrack = document.getElementById('carouselTrack');
   if (carouselTrack) {
     const slides = Array.from(carouselTrack.children);
