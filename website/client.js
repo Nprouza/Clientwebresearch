@@ -115,6 +115,108 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
   }
 
+  const reviewsSection = document.getElementById('reviews');
+  if (reviewsSection) {
+    const reviewsTrack = reviewsSection.querySelector('.reviews-track');
+    const reviewSlides = Array.from(reviewsTrack?.children || []);
+    const reviewsDots = reviewsSection.querySelector('.reviews-dots');
+    const previousReviewButton = reviewsSection.querySelector('.reviews-control.prev');
+    const nextReviewButton = reviewsSection.querySelector('.reviews-control.next');
+    const googleReviewsUrl = reviewsSection.dataset.googleReviewsUrl?.trim();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let currentReviewIndex = 0;
+    let reviewsTimer = null;
+
+    reviewSlides.forEach((slide, index) => {
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'slide');
+      slide.setAttribute('aria-label', `${index + 1} of ${reviewSlides.length}`);
+
+      const reviewLink = slide;
+      if (googleReviewsUrl) {
+        reviewLink.href = googleReviewsUrl;
+        reviewLink.removeAttribute('aria-disabled');
+        reviewLink.removeAttribute('tabindex');
+        reviewLink.target = '_blank';
+        reviewLink.rel = 'noopener noreferrer';
+      } else {
+        reviewLink.tabIndex = -1;
+        reviewLink.addEventListener('click', (event) => event.preventDefault());
+      }
+
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'reviews-dot';
+      dot.setAttribute('aria-label', `Show review ${index + 1}`);
+      dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
+      dot.classList.toggle('active', index === 0);
+      dot.addEventListener('click', () => {
+        goToReview(index);
+        resetReviewsTimer();
+      });
+      reviewsDots?.appendChild(dot);
+    });
+
+    const reviewDotButtons = Array.from(reviewsDots?.children || []);
+
+    function goToReview(index) {
+      if (!reviewSlides.length || !reviewsTrack) return;
+      currentReviewIndex = (index + reviewSlides.length) % reviewSlides.length;
+      reviewsTrack.style.transform = `translateX(-${currentReviewIndex * 100}%)`;
+      reviewDotButtons.forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === currentReviewIndex);
+        dot.setAttribute('aria-current', dotIndex === currentReviewIndex ? 'true' : 'false');
+      });
+    }
+
+    function stopReviewsTimer() {
+      clearInterval(reviewsTimer);
+      reviewsTimer = null;
+    }
+
+    function startReviewsTimer() {
+      if (
+        reducedMotion ||
+        reviewSlides.length < 2 ||
+        document.hidden ||
+        reviewsSection.matches(':hover') ||
+        reviewsSection.contains(document.activeElement)
+      ) return;
+      stopReviewsTimer();
+      reviewsTimer = setInterval(() => goToReview(currentReviewIndex + 1), 5000);
+    }
+
+    function resetReviewsTimer() {
+      stopReviewsTimer();
+      startReviewsTimer();
+    }
+
+    previousReviewButton?.addEventListener('click', () => {
+      goToReview(currentReviewIndex - 1);
+      resetReviewsTimer();
+    });
+    nextReviewButton?.addEventListener('click', () => {
+      goToReview(currentReviewIndex + 1);
+      resetReviewsTimer();
+    });
+
+    reviewsSection.addEventListener('mouseenter', stopReviewsTimer);
+    reviewsSection.addEventListener('mouseleave', startReviewsTimer);
+    reviewsSection.addEventListener('focusin', stopReviewsTimer);
+    reviewsSection.addEventListener('focusout', (event) => {
+      if (!reviewsSection.contains(event.relatedTarget)) startReviewsTimer();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopReviewsTimer();
+      } else {
+        startReviewsTimer();
+      }
+    });
+
+    startReviewsTimer();
+  }
+
   const comparisonSliders = document.querySelectorAll('.comparison-slider');
 
   comparisonSliders.forEach((slider) => {

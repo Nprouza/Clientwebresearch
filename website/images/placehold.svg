@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#202024"/>
+      <stop offset="1" stop-color="#0b0b0d"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="24" fill="url(#background)"/>
+  <circle cx="320" cy="175" r="68" fill="#34343a"/>
+  <path d="M183 390c9-82 64-126 137-126s128 44 137 126" fill="#34343a"/>
+  <text x="320" y="440" fill="#b9b9c0" font-family="Arial, sans-serif" font-size="24" letter-spacing="4" text-anchor="middle">OWNER PHOTO</text>
+</svg>
