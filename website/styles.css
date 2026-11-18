@@ -1109,6 +1109,59 @@ footer {
   text-transform: uppercase;
 }
 
+.scroll-car-progress {
+  position: fixed;
+  right: 14px;
+  top: 112px;
+  bottom: 24px;
+  width: 52px;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.scroll-car-track {
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 24px;
+  width: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-car-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--accent-red-bright), var(--accent-red));
+  box-shadow: 0 0 10px var(--accent-red-glow);
+}
+
+.scroll-car {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  transform: translateY(-50%) rotate(90deg);
+  filter: drop-shadow(0 5px 6px rgba(217, 16, 30, 0.48));
+  will-change: top;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: filter 0.15s ease;
+}
+
+.scroll-car.dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 7px 10px rgba(217, 16, 30, 0.72));
+}
+
 @media (max-width: 980px) {
   .hero-container {
     grid-template-columns: 1fr;
@@ -1186,6 +1239,20 @@ footer {
 
   .booking-btn {
     width: 100%;
+  }
+
+  .scroll-car-progress {
+    right: 4px;
+    width: 40px;
+  }
+
+  .scroll-car-track {
+    left: 19px;
+  }
+
+  .scroll-car {
+    left: -18px;
+    width: 40px;
   }
 }
 

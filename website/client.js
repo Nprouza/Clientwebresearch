@@ -264,4 +264,94 @@ document.addEventListener('DOMContentLoaded', () => {
     const rect = slider.getBoundingClientRect();
     updateSlider(rect.left + rect.width * 0.5);
   });
+
+  const scrollProgress = document.querySelector('.scroll-car-progress');
+  const scrollTrack = document.querySelector('.scroll-car-track');
+  const scrollFill = document.querySelector('.scroll-car-fill');
+  const scrollCar = document.querySelector('.scroll-car');
+
+  if (scrollProgress && scrollTrack && scrollFill && scrollCar) {
+    let scrollTicking = false;
+    let isDraggingScrollCar = false;
+    let dragFrame = null;
+
+    function getScrollProgress(clientY) {
+      const trackRect = scrollTrack.getBoundingClientRect();
+      return Math.min(Math.max((clientY - trackRect.top) / trackRect.height, 0), 1);
+    }
+
+    function renderScrollProgress(progress) {
+      scrollFill.style.height = `${progress * 100}%`;
+      scrollCar.style.top = `${progress * scrollTrack.clientHeight}px`;
+    }
+
+    function scrollToProgress(progress) {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, progress * scrollableHeight);
+      renderScrollProgress(progress);
+    }
+
+    function updateScrollCar() {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollableHeight > 0
+        ? Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1)
+        : 0;
+
+      if (!isDraggingScrollCar) renderScrollProgress(progress);
+      scrollTicking = false;
+    }
+
+    function requestScrollUpdate() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(updateScrollCar);
+    }
+
+    scrollCar.addEventListener('pointerdown', (event) => {
+      isDraggingScrollCar = true;
+      scrollCar.setPointerCapture?.(event.pointerId);
+      scrollCar.classList.add('dragging');
+      document.body.style.userSelect = 'none';
+      event.preventDefault();
+      scrollToProgress(getScrollProgress(event.clientY));
+    });
+
+    scrollCar.addEventListener('pointermove', (event) => {
+      if (!isDraggingScrollCar) return;
+
+      const progress = getScrollProgress(event.clientY);
+      if (dragFrame) cancelAnimationFrame(dragFrame);
+      dragFrame = requestAnimationFrame(() => {
+        scrollToProgress(progress);
+        dragFrame = null;
+      });
+    });
+
+    function stopDraggingScrollCar(event) {
+      if (!isDraggingScrollCar) return;
+      isDraggingScrollCar = false;
+
+      if (dragFrame) {
+        cancelAnimationFrame(dragFrame);
+        dragFrame = null;
+      }
+
+      scrollCar.classList.remove('dragging');
+      document.body.style.userSelect = '';
+      document.documentElement.style.scrollBehavior = '';
+
+      if (event?.pointerId !== undefined) {
+        scrollCar.releasePointerCapture?.(event.pointerId);
+      }
+      requestScrollUpdate();
+    }
+
+    scrollCar.addEventListener('pointerup', stopDraggingScrollCar);
+    scrollCar.addEventListener('pointercancel', stopDraggingScrollCar);
+
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+    window.addEventListener('resize', requestScrollUpdate);
+    updateScrollCar();
+  }
 });
